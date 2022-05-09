@@ -17,11 +17,15 @@ Movies.find()
       next(error);
     }));
 
-    router.get('/movies/:moviesId', (req, res) => {
-        const { moviesId } = req.params;
-        console.log('The ID from the URL is: ', moviesId);
-       
-        res.render('movies/movies-details.hbs');
-      });
+    router.get('/movies/:id', async(req,res) => {
+        try {
+            const {id} = req.params;
+            const movie = await Movies.findById(id);
+            console.log('length:'+movie.length);
+            res.render('movies-details', movie);
+        } catch (error) {
+            console.error(error);
+        }
+    });
 
 module.exports = router;

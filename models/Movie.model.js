@@ -17,7 +17,7 @@ const moviesSchema = new Schema({
   description:{
     type: String,
   },
-  showTimes:{
+  showtimes:{
     type:[String]
   },
 });
